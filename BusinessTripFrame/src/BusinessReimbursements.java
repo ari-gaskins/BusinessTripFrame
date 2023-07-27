@@ -22,5 +22,57 @@
 
 
 public class BusinessReimbursements {
-
+	// amount paid for meals per day
+	private double mealsPaid = 37.0;
+	
+	// amount paid for parking per day
+	private double parkingPaid = 10.0;
+	
+	// amount paid taxi charges per day
+	private double taxiPaid = 20.0;
+	
+	// amount paid for lodging charges per day
+	private double lodgingPaid = 97.40;
+	
+	// rate paid for miles driven in a car rental
+	private double mileageRate = 0.27;
+	
+	// number of days the business trip lasts
+	private int numDays;
+	
+	/**
+	 * Constructor for initializing the number of days 
+	 */
+	public BusinessReimbursements() {
+		this.numDays = 1;
+	}
+	
+	public BusinessReimbursements(int numDays) {
+		this.numDays = numDays;
+	}
+	
+	public double getMealsPaid() {
+		return mealsPaid;
+	}
+	
+	public double getParkingPaid() {
+		return parkingPaid;
+	}
+	
+	public double getTaxiPaid() {
+		return taxiPaid;
+	}
+	
+	public double getLodgingPaid() {
+		return lodgingPaid;
+	}
+	
+	public double getMileageRate() {
+		return mileageRate;
+	}
+	
+	public int getNumDays() {
+		return numDays;
+	}
+	
 }
