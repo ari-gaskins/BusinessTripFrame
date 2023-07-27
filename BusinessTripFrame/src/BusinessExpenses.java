@@ -53,14 +53,29 @@ public class BusinessExpenses {
 	// tracks if user gets parking fees
 	private boolean hasParking = false;
 	
+	// tracks if user gets lodging charges
+	private boolean hasLodging = false;
+	
+	/**
+	 * Mutator for numDays.
+	 * @paramuserDays int user input number of days
+	 */
 	public void setNumDays(int userDays) {
 		numDays = userDays;		
 	}
 	
+	/**
+	 * Mutator for airfare.
+	 * @paramuserAirfare double user input cost of airfare
+	 */
 	public void setAirfare(double userAirfare) {
 		airfare = userAirfare;
 	}
 	
+	/**
+	 * Mutator for carRental. Sets hasRental if carRental exists.
+	 * @paramuserRental double user input cost of car rental
+	 */
 	public void setCarRental(double userRental) {
 		carRental = userRental;
 		if (carRental > 0) {
@@ -68,12 +83,23 @@ public class BusinessExpenses {
 		}
 	}
 	
+	/**
+	 * Mutator for milesDriven. Sets to user input if carRental exists.
+	 * @paramuserMiles int user input number of miles driven in rental
+	 */
 	public void setMilesDriven(int userMiles) {
-		if (carRental > 0) {
+		if (hasRental) {
 			milesDriven = userMiles;
+		}
+		else {
+			milesDriven = 0;
 		}
 	}
 	
+	/**
+	 * Mutator for parkingFees. Sets hasParking if parkingFees exists.
+	 * @paramuserParking double user input cost of parking fees
+	 */
 	public void setParkingFees(double userParking) {
 		parkingFees = userParking;
 		if (parkingFees > 0) {
@@ -81,15 +107,142 @@ public class BusinessExpenses {
 		}
 	}
 	
+	/**
+	 * Mutator for taxiCharges. Sets hasTaxi if taxiCharges exists.
+	 * @param userTaxi double user input cost of taxi charges
+	 */
 	public void setTaxiCharges(double userTaxi) {
 		taxiCharges = userTaxi;
+		if (taxiCharges > 0) {
+			hasTaxi = true;
+		}
 	}
 	
+	/**
+	 * Mutator for registrationFees. 
+	 * @paramuserRegistration double user input cost of registration fees
+	 */
 	public void setRegistrationFees(double userRegistration) {
 		registrationFees = userRegistration;
 	}
 	
+	/**
+	 * Mutator for lodgingCharges. Sets hasLodging if lodgingCharges exists.
+	 * @paramuserLodging 
+	 */
 	public void setLodgingCharges(double userLodging) {
 		lodgingCharges = userLodging;
+		if (lodgingCharges > 0) {
+			hasLodging = true;
+		}
+	}
+	
+	/**
+	 * Return number of days the trip lasted.
+	 * @return numDays
+	 */
+	public int getNumDays() {
+		return numDays;
+	}
+	
+	/**
+	 * Return cost of airfare.
+	 * @return airfare
+	 */
+	public double getAirfare() {
+		return airfare;
+	}
+	
+	/**
+	 * Return cost of car rental.
+	 * @return carRental
+	 */
+	public double carRental() {
+		return carRental;
+	}
+	
+	/**
+	 * Return number of miles driven.
+	 * @return milesDriven
+	 */
+	public int getMilesDriven() {
+		return milesDriven;
+	}
+	
+	/**
+	 * Return cost of parking fees.
+	 * @return parkingFees
+	 */
+	public double getParkingFees() {
+		return parkingFees;
+	}
+	
+	/**
+	 * Return cost of taxi charges
+	 * @return taxiCharges
+	 */
+	public double getTaxiCharges() {
+		return taxiCharges;
+	}
+	
+	/**
+	 * Return cost of registration fees
+	 * @return registrationFees
+	 */
+	public double getRegistrationFees() {
+		return registrationFees;
+	}
+	
+	/**
+	 * Return cost of lodging
+	 * @return lodgingCharges
+	 */
+	public double getLodgingCharges() {
+		return lodgingCharges;
+	}
+	
+	/**
+	 * Return whether user has car rental
+	 * @return hasRental boolean true if user has car rental false if not
+	 */
+	public boolean getHasRental() {
+		return hasRental;
+	}
+	
+	/**
+	 * Return whether user has taxi charges
+	 * @return hasTaxi boolean true if user has taxi charges false if not
+	 */
+	public boolean getHasTaxi() {
+		return hasTaxi;
+	}
+	
+	/**
+	 * Return whether user has parking fees
+	 * @return hasParking boolean true if user has parking fees false if not
+	 */
+	public boolean getHasParking() {
+		return hasParking;
+	}
+	
+	/**
+	 * Return whether user has lodging charges
+	 * @return hasLodging boolean true if user has lodging charges false if not
+	 */
+	public boolean getHasLodging() {
+		return hasLodging;
+	}
+	
+	/**
+	 * Return total expenses based on number of days
+	 * @return total expenses double total fees times number of days
+	 */
+	public double getTotalExpenses() {
+		double totalExpenses;
+		
+		totalExpenses = (airfare + carRental + parkingFees + taxiCharges 
+				+ registrationFees + lodgingCharges) * numDays;
+		
+		return totalExpenses;
 	}
 }
