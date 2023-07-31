@@ -28,6 +28,7 @@ import javax.swing.JLabel;
 import javax.swing.JFrame;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.InputMismatchException;
 
 
 public class BusinessTripFrame extends JFrame {
@@ -105,12 +106,22 @@ public class BusinessTripFrame extends JFrame {
 	// button to submit form data
 	private JButton submitButton = new JButton("Submit");
 	
+	// declare BusinessExpenses object
+	private BusinessExpenses expensesObj;
+	
+	// declare BusinessReimbursements object
+	private BusinessReimbursements reimbursementsObj;
+	
 	BusinessTripFrame() {
 		// specifies GUI component layout
 		GridBagConstraints layoutConstraints = null;
 		
 		// set frame title
 		setTitle("Business Trip Expense Report");
+		
+		// initialize objects
+		expensesObj = new BusinessExpenses();
+		reimbursementsObj = new BusinessReimbursements();
 		
 		// initialize labels
 		airfareLabel = new JLabel("Cost of Airfare:");
@@ -146,17 +157,18 @@ public class BusinessTripFrame extends JFrame {
 		userNumDays = new JTextField(20);
 		userNumDays.setEditable(true);
 		
-		userFinalCost = new JTextField(20);
-		userFinalCost.setEditable(false);
-		userFinalCost.setText(String.valueOf(userCost));
+		userReimbursements = new JTextField(20);
+		userReimbursements.setEditable(false);
+		userReimbursements.setText(String.valueOf(totalReimbursements));
 		
 		userTotalExpenses = new JTextField(20);
 		userTotalExpenses.setEditable(false);
 		userTotalExpenses.setText(String.valueOf(totalExpenses));
 		
-		userReimbursements = new JTextField(20);
-		userReimbursements.setEditable(false);
-		userReimbursements.setText(String.valueOf(totalReimbursements));
+		userFinalCost = new JTextField(20);
+		userFinalCost.setEditable(false);
+		userFinalCost.setText(String.valueOf(userCost));
+		
 		
 		// Use a GridBagLayout
 		setLayout(new GridBagLayout());
@@ -261,6 +273,153 @@ public class BusinessTripFrame extends JFrame {
 		layoutConstraints.gridx = 0;
 		layoutConstraints.gridy = 9;
 		add(finalCostLabel, layoutConstraints);
+		
+		// set component's locations: fields
+		layoutConstraints = new GridBagConstraints();
+		layoutConstraints.fill = GridBagConstraints.HORIZONTAL;
+		layoutConstraints.insets = new Insets(10, 10, 10, 10);
+		layoutConstraints.anchor = GridBagConstraints.FIRST_LINE_END;
+		layoutConstraints.weightx = 0.5;
+		layoutConstraints.weighty = 0.5;
+		layoutConstraints.gridx = 1;
+		layoutConstraints.gridy = 0;
+		add(userAirfare, layoutConstraints);
+		
+		layoutConstraints = new GridBagConstraints();
+		layoutConstraints.fill = GridBagConstraints.HORIZONTAL;
+		layoutConstraints.insets = new Insets(10, 10, 10, 10);
+		layoutConstraints.anchor = GridBagConstraints.FIRST_LINE_END;
+		layoutConstraints.weightx = 0.5;
+		layoutConstraints.weighty = 0.5;
+		layoutConstraints.gridx = 1;
+		layoutConstraints.gridy = 1;
+		add(userCarRental, layoutConstraints);
+		
+		layoutConstraints = new GridBagConstraints();
+		layoutConstraints.fill = GridBagConstraints.HORIZONTAL;
+		layoutConstraints.insets = new Insets(10, 10, 10, 10);
+		layoutConstraints.anchor = GridBagConstraints.FIRST_LINE_END;
+		layoutConstraints.weightx = 0.5;
+		layoutConstraints.weighty = 0.5;
+		layoutConstraints.gridx = 1;
+		layoutConstraints.gridy = 2;
+		add(userMilesDriven, layoutConstraints);
+		
+		layoutConstraints = new GridBagConstraints();
+		layoutConstraints.fill = GridBagConstraints.HORIZONTAL;
+		layoutConstraints.insets = new Insets(10, 10, 10, 10);
+		layoutConstraints.anchor = GridBagConstraints.LINE_END;
+		layoutConstraints.weightx = 0.5;
+		layoutConstraints.weighty = 0.5;
+		layoutConstraints.gridx = 1;
+		layoutConstraints.gridy = 3;
+		add(userTaxiCharges, layoutConstraints);
+		
+		layoutConstraints = new GridBagConstraints();
+		layoutConstraints.fill = GridBagConstraints.HORIZONTAL;
+		layoutConstraints.insets = new Insets(10, 10, 10, 10);
+		layoutConstraints.anchor = GridBagConstraints.LINE_END;
+		layoutConstraints.weightx = 0.5;
+		layoutConstraints.weighty = 0.5;
+		layoutConstraints.gridx = 1;
+		layoutConstraints.gridy = 4;
+		add(userRegistrationFees, layoutConstraints);
+		
+		layoutConstraints = new GridBagConstraints();
+		layoutConstraints.fill = GridBagConstraints.HORIZONTAL;
+		layoutConstraints.insets = new Insets(10, 10, 10, 10);
+		layoutConstraints.anchor = GridBagConstraints.LINE_END;
+		layoutConstraints.weightx = 0.5;
+		layoutConstraints.weighty = 0.5;
+		layoutConstraints.gridx = 1;
+		layoutConstraints.gridy = 5;
+		add(userLodgingCharges, layoutConstraints);
+		
+		layoutConstraints = new GridBagConstraints();
+		layoutConstraints.fill = GridBagConstraints.HORIZONTAL;
+		layoutConstraints.insets = new Insets(10, 10, 10, 10);
+		layoutConstraints.anchor = GridBagConstraints.LINE_END;
+		layoutConstraints.weightx = 0.5;
+		layoutConstraints.weighty = 0.5;
+		layoutConstraints.gridx = 1;
+		layoutConstraints.gridy = 6;
+		add(userNumDays, layoutConstraints);
+		
+		layoutConstraints = new GridBagConstraints();
+		layoutConstraints.fill = GridBagConstraints.HORIZONTAL;
+		layoutConstraints.insets = new Insets(10, 10, 10, 10);
+		layoutConstraints.anchor = GridBagConstraints.LAST_LINE_END;
+		layoutConstraints.weightx = 0.5;
+		layoutConstraints.weighty = 0.5;
+		layoutConstraints.gridx = 1;
+		layoutConstraints.gridy = 7;
+		add(userReimbursements, layoutConstraints);
+		
+		layoutConstraints = new GridBagConstraints();
+		layoutConstraints.fill = GridBagConstraints.HORIZONTAL;
+		layoutConstraints.insets = new Insets(10, 10, 10, 10);
+		layoutConstraints.anchor = GridBagConstraints.LAST_LINE_END;
+		layoutConstraints.weightx = 0.5;
+		layoutConstraints.weighty = 0.5;
+		layoutConstraints.gridx = 1;
+		layoutConstraints.gridy = 8;
+		add(userTotalExpenses, layoutConstraints);
+		
+		layoutConstraints = new GridBagConstraints();
+		layoutConstraints.fill = GridBagConstraints.HORIZONTAL;
+		layoutConstraints.insets = new Insets(10, 10, 10, 10);
+		layoutConstraints.anchor = GridBagConstraints.LAST_LINE_END;
+		layoutConstraints.weightx = 0.5;
+		layoutConstraints.weighty = 0.5;
+		layoutConstraints.gridx = 1;
+		layoutConstraints.gridy = 9;
+		add(userFinalCost, layoutConstraints);
+		
+		layoutConstraints = new GridBagConstraints();
+		layoutConstraints.fill = GridBagConstraints.HORIZONTAL;
+		layoutConstraints.insets = new Insets(10, 10, 10, 10);
+		layoutConstraints.anchor = GridBagConstraints.LAST_LINE_END;
+		layoutConstraints.weightx = 0.5;
+		layoutConstraints.weighty = 0.5;
+		layoutConstraints.gridx = 1;
+		layoutConstraints.gridy = 10;
+		add(submitButton, layoutConstraints);
+	}
+	
+	public void getTotalExpenses() {
+		String airfareText = userAirfare.getText();
+		String rentalText = userCarRental.getText();
+		String milesText = userMilesDriven.getText();
+		String taxiText = userTaxiCharges.getText();
+		String registrationText = userRegistrationFees.getText();
+		String lodgingText = userLodgingCharges.getText();
+		String numDaysText = userNumDays.getText();
+		
+		double airfareValue = checkValue(airfareText);
+		double rentalValue = checkValue(rentalText);
+		double milesValue = checkValue(milesText);
+		double taxiValue = checkValue(taxiText);
+		double registrationValue = checkValue(registrationText);
+		double lodgingValue = checkValue(lodgingText);
+		double numDaysValue = checkValue(numDaysText);
+		
+		
+	}
+	
+	public double checkValue(String value) {
+		double newValue;
+		
+		if (value == null) {
+			newValue = 0.0;
+			return newValue;
+		}
+		else if (Double.valueOf(value) >= 0) {
+			newValue = Double.valueOf(value);
+			return newValue;
+		}
+		else {
+			throw new InputMismatchException("Invalid value entered.");
+		}
 	}
 	
 	public static void main(String[] args) {
