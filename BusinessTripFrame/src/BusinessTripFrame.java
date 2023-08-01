@@ -55,6 +55,9 @@ public class BusinessTripFrame extends JFrame {
 	// text field for user to enter the cost of taxi charges
 	private JTextField userTaxiCharges;
 	
+	// text field for user to enter the cost of parking fees
+	private JTextField userParkingFees;
+	
 	// text field for user to enter the cost of registration fees
 	private JTextField userRegistrationFees;
 	
@@ -84,6 +87,9 @@ public class BusinessTripFrame extends JFrame {
 	
 	// label for taxi cost
 	private JLabel taxiLabel;
+	
+	// label for parking cost
+	private JLabel parkingLabel;
 	
 	// label for registration cost
 	private JLabel registrationLabel;
@@ -119,15 +125,15 @@ public class BusinessTripFrame extends JFrame {
 		// set frame title
 		setTitle("Business Trip Expense Report");
 		
-		// initialize objects
+		// initialize BusinessExpenses object
 		expensesObj = new BusinessExpenses();
-		reimbursementsObj = new BusinessReimbursements();
 		
 		// initialize labels
 		airfareLabel = new JLabel("Cost of Airfare:");
 		rentalLabel = new JLabel("Cost of rental vehicle:");
 		milesLabel = new JLabel("Number of miles driven in rental:");
 		taxiLabel = new JLabel("Cost of taxi charges:");
+		parkingLabel = new JLabel("Cost of parking fees:");
 		registrationLabel = new JLabel("Cost of registration fees:");
 		lodgingLabel = new JLabel("Cost of lodging:");
 		numDaysLabel = new JLabel("Length of trip (in days):");
@@ -147,6 +153,9 @@ public class BusinessTripFrame extends JFrame {
 		
 		userTaxiCharges = new JTextField(20);
 		userTaxiCharges.setEditable(true);
+		
+		userParkingFees = new JTextField(20);
+		userParkingFees.setEditable(true);
 		
 		userRegistrationFees = new JTextField(20);
 		userRegistrationFees.setEditable(true);
@@ -222,7 +231,7 @@ public class BusinessTripFrame extends JFrame {
 		layoutConstraints.weighty = 0.5;
 		layoutConstraints.gridx = 0;
 		layoutConstraints.gridy = 4;
-		add(registrationLabel, layoutConstraints);
+		add(parkingLabel, layoutConstraints);
 		
 		layoutConstraints = new GridBagConstraints();
 		layoutConstraints.fill = GridBagConstraints.HORIZONTAL;
@@ -232,7 +241,7 @@ public class BusinessTripFrame extends JFrame {
 		layoutConstraints.weighty = 0.5;
 		layoutConstraints.gridx = 0;
 		layoutConstraints.gridy = 5;
-		add(lodgingLabel, layoutConstraints);
+		add(registrationLabel, layoutConstraints);
 		
 		layoutConstraints = new GridBagConstraints();
 		layoutConstraints.fill = GridBagConstraints.HORIZONTAL;
@@ -242,6 +251,16 @@ public class BusinessTripFrame extends JFrame {
 		layoutConstraints.weighty = 0.5;
 		layoutConstraints.gridx = 0;
 		layoutConstraints.gridy = 6;
+		add(lodgingLabel, layoutConstraints);
+		
+		layoutConstraints = new GridBagConstraints();
+		layoutConstraints.fill = GridBagConstraints.HORIZONTAL;
+		layoutConstraints.insets = new Insets(10, 10, 10, 5);
+		layoutConstraints.anchor = GridBagConstraints.LINE_START;
+		layoutConstraints.weightx = 0.5;
+		layoutConstraints.weighty = 0.5;
+		layoutConstraints.gridx = 0;
+		layoutConstraints.gridy = 7;
 		add(numDaysLabel, layoutConstraints);
 		
 		layoutConstraints = new GridBagConstraints();
@@ -251,7 +270,7 @@ public class BusinessTripFrame extends JFrame {
 		layoutConstraints.weightx = 0.5;
 		layoutConstraints.weighty = 0.5;
 		layoutConstraints.gridx = 0;
-		layoutConstraints.gridy = 7;
+		layoutConstraints.gridy = 8;
 		add(reimbursementsLabel, layoutConstraints);
 		
 		layoutConstraints = new GridBagConstraints();
@@ -261,7 +280,7 @@ public class BusinessTripFrame extends JFrame {
 		layoutConstraints.weightx = 0.5;
 		layoutConstraints.weighty = 0.5;
 		layoutConstraints.gridx = 0;
-		layoutConstraints.gridy = 8;
+		layoutConstraints.gridy = 9;
 		add(expensesLabel, layoutConstraints);
 		
 		layoutConstraints = new GridBagConstraints();
@@ -271,7 +290,7 @@ public class BusinessTripFrame extends JFrame {
 		layoutConstraints.weightx = 0.5;
 		layoutConstraints.weighty = 0.5;
 		layoutConstraints.gridx = 0;
-		layoutConstraints.gridy = 9;
+		layoutConstraints.gridy = 10;
 		add(finalCostLabel, layoutConstraints);
 		
 		// set component's locations: fields
@@ -323,7 +342,7 @@ public class BusinessTripFrame extends JFrame {
 		layoutConstraints.weighty = 0.5;
 		layoutConstraints.gridx = 1;
 		layoutConstraints.gridy = 4;
-		add(userRegistrationFees, layoutConstraints);
+		add(userParkingFees, layoutConstraints);
 		
 		layoutConstraints = new GridBagConstraints();
 		layoutConstraints.fill = GridBagConstraints.HORIZONTAL;
@@ -333,7 +352,7 @@ public class BusinessTripFrame extends JFrame {
 		layoutConstraints.weighty = 0.5;
 		layoutConstraints.gridx = 1;
 		layoutConstraints.gridy = 5;
-		add(userLodgingCharges, layoutConstraints);
+		add(userRegistrationFees, layoutConstraints);
 		
 		layoutConstraints = new GridBagConstraints();
 		layoutConstraints.fill = GridBagConstraints.HORIZONTAL;
@@ -343,6 +362,16 @@ public class BusinessTripFrame extends JFrame {
 		layoutConstraints.weighty = 0.5;
 		layoutConstraints.gridx = 1;
 		layoutConstraints.gridy = 6;
+		add(userLodgingCharges, layoutConstraints);
+		
+		layoutConstraints = new GridBagConstraints();
+		layoutConstraints.fill = GridBagConstraints.HORIZONTAL;
+		layoutConstraints.insets = new Insets(10, 10, 10, 10);
+		layoutConstraints.anchor = GridBagConstraints.LINE_END;
+		layoutConstraints.weightx = 0.5;
+		layoutConstraints.weighty = 0.5;
+		layoutConstraints.gridx = 1;
+		layoutConstraints.gridy = 7;
 		add(userNumDays, layoutConstraints);
 		
 		layoutConstraints = new GridBagConstraints();
@@ -352,7 +381,7 @@ public class BusinessTripFrame extends JFrame {
 		layoutConstraints.weightx = 0.5;
 		layoutConstraints.weighty = 0.5;
 		layoutConstraints.gridx = 1;
-		layoutConstraints.gridy = 7;
+		layoutConstraints.gridy = 8;
 		add(userReimbursements, layoutConstraints);
 		
 		layoutConstraints = new GridBagConstraints();
@@ -362,7 +391,7 @@ public class BusinessTripFrame extends JFrame {
 		layoutConstraints.weightx = 0.5;
 		layoutConstraints.weighty = 0.5;
 		layoutConstraints.gridx = 1;
-		layoutConstraints.gridy = 8;
+		layoutConstraints.gridy = 9;
 		add(userTotalExpenses, layoutConstraints);
 		
 		layoutConstraints = new GridBagConstraints();
@@ -372,7 +401,7 @@ public class BusinessTripFrame extends JFrame {
 		layoutConstraints.weightx = 0.5;
 		layoutConstraints.weighty = 0.5;
 		layoutConstraints.gridx = 1;
-		layoutConstraints.gridy = 9;
+		layoutConstraints.gridy = 10;
 		add(userFinalCost, layoutConstraints);
 		
 		layoutConstraints = new GridBagConstraints();
@@ -382,34 +411,145 @@ public class BusinessTripFrame extends JFrame {
 		layoutConstraints.weightx = 0.5;
 		layoutConstraints.weighty = 0.5;
 		layoutConstraints.gridx = 1;
-		layoutConstraints.gridy = 10;
+		layoutConstraints.gridy = 11;
 		add(submitButton, layoutConstraints);
+		
+		submitButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				setExpenses();
+				setReimbursements();
+				getTotalExpenses();
+				getTotalReimbursements();
+				getUserCost();
+			}
+		});
 	}
 	
+	/**
+	 * Retrieve expenses and reimbursements, then calculate cost to user.
+	 * Set output text to cost to user.
+	 */
+	public void getUserCost() {
+		double expenses = expensesObj.getTotalExpenses();
+		double reimbursements = reimbursementsObj.getTotalReimbursements();
+		double userCost = expenses - reimbursements;
+		
+		userFinalCost.setText("$ " + String.format("%.2f", userCost));
+	}
+	
+	/**
+	 * Retrieve total reimbursements. Set output text to amount reimbursed.
+	 */
+	public void getTotalReimbursements() {
+		double totalReimbursed = 
+				reimbursementsObj.getTotalReimbursements();
+		
+		userReimbursements.setText("$ " + String.format("%.2f", totalReimbursed));
+	}
+	
+	/**
+	 * Retrieve total expenses. Set output text to amount spent.
+	 */
 	public void getTotalExpenses() {
+		double totalExpenses = expensesObj.getTotalExpenses();
+		
+		userTotalExpenses.setText("$ " + String.format("%.2f", totalExpenses));
+	}	
+	
+	/**
+	 * Retrieve user input values. Check values and change to double or int.
+	 * Set values to expensesObj.
+	 * @see valueToDouble() 
+	 * @see valueToInt()
+	 */
+	public void setExpenses() {
 		String airfareText = userAirfare.getText();
 		String rentalText = userCarRental.getText();
 		String milesText = userMilesDriven.getText();
 		String taxiText = userTaxiCharges.getText();
+		String parkingText = userParkingFees.getText();
 		String registrationText = userRegistrationFees.getText();
 		String lodgingText = userLodgingCharges.getText();
 		String numDaysText = userNumDays.getText();
 		
-		double airfareValue = checkValue(airfareText);
-		double rentalValue = checkValue(rentalText);
-		double milesValue = checkValue(milesText);
-		double taxiValue = checkValue(taxiText);
-		double registrationValue = checkValue(registrationText);
-		double lodgingValue = checkValue(lodgingText);
-		double numDaysValue = checkValue(numDaysText);
+		double airfareValue = valueToDouble(airfareText);
+		double rentalValue = valueToDouble(rentalText);
+		int milesValue = valueToInt(milesText);
+		double taxiValue = valueToDouble(taxiText);
+		double parkingValue = valueToDouble(parkingText);
+		double registrationValue = valueToDouble(registrationText);
+		double lodgingValue = valueToDouble(lodgingText);
+		int numDaysValue = valueToInt(numDaysText);
 		
-		
+		expensesObj.setAirfare(airfareValue);
+		expensesObj.setCarRental(rentalValue);
+		expensesObj.setMilesDriven(milesValue);
+		expensesObj.setTaxiCharges(taxiValue);
+		expensesObj.setParkingFees(parkingValue);
+		expensesObj.setRegistrationFees(registrationValue);
+		expensesObj.setLodgingCharges(lodgingValue);
+		expensesObj.setNumDays(numDaysValue);
 	}
 	
-	public double checkValue(String value) {
+	/**
+	 * Retrieve values from expensesObj. Initialize reimbursementsObj with
+	 * values retrieved. Set miles reimbursed based on miles driven
+	 * retrieved from expensesObj.
+	 */
+	public void setReimbursements() {
+		int numDays = expensesObj.getNumDays();
+		boolean hasRental = expensesObj.getHasRental();
+		boolean hasTaxi = expensesObj.getHasTaxi();
+		boolean hasParking = expensesObj.getHasParking();
+		boolean hasLodging = expensesObj.getHasLodging();
+		int milesDriven = expensesObj.getMilesDriven();
+		
+		reimbursementsObj = new BusinessReimbursements(numDays, hasRental,
+				hasTaxi, hasParking, hasLodging);
+		
+		reimbursementsObj.setMilesReimbursed(milesDriven);
+	}
+	
+	/**
+	 * Check for null values, change them to zero. Otherwise, return 
+	 * value as int value.
+	 * @param value String to be checked and made to int
+	 * @return newValue int after value is checked
+	 */
+	public int valueToInt(String value) {
+		int newValue;
+		
+		if (value == null) {
+			newValue = 0;
+			return newValue;
+		}
+		else if (value.equals("")) {
+			newValue = 0;
+			return newValue;
+		}
+		else if (Integer.valueOf(value) >= 0) {
+			newValue = Integer.valueOf(value);
+			return newValue;
+		}
+		else {
+			throw new InputMismatchException("Invalid value entered.");
+		}
+	}
+	
+	/**
+	 * Check for null values, change them to zero. Otherwise, return 
+	 * value as double value.
+	 * @param value String to be checked and made to double
+	 * @return newValue double after value is checked
+	 */
+	public double valueToDouble(String value) {
 		double newValue;
 		
 		if (value == null) {
+			newValue = 0.0;
+			return newValue;
+		}
+		else if (value.equals("")) {
 			newValue = 0.0;
 			return newValue;
 		}

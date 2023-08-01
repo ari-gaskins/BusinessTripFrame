@@ -181,6 +181,11 @@ public class BusinessReimbursements {
 		return numDays;
 	}
 	
+	/**
+	 * Return total amount to be reimbursed based on number of days
+	 * the trip lasted.
+	 * @return totalReimbursements double total amount reimbursed to user
+	 */
 	public double getTotalReimbursements() {
 		totalReimbursements = (getMealsPaid() + getParkingPaid() + getTaxiPaid()
 			+ getLodgingPaid()) * numDays;
